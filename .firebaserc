@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "fir-project-c58d0"
-  }
+    "default": "fir-project-c58d0",
+    "dev": "react-firebase-crud-35bd9"
+  },
+  "targets": {}
 }
