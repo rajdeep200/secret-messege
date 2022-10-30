@@ -1,28 +1,47 @@
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useState, useEffect } from "react";
 import { instructions } from "../constants/instructions";
 import { makeUserId, makeUserPassword } from "../utils/functions";
 import { db } from "../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
-import bcrypt from 'bcryptjs'
+import { useRouter } from "next/router";
+import Loader from '../components/Loader';
 
 export default function Home() {
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false)
+  const router = useRouter();
+  useEffect(() => {
+    if(localStorage.getItem("userInfo")){
+      router.push("/profile");
+    }
+  }, [router])
+  
   const handleSubmit = async () => {
+    setLoading(true);
     if (name === "") return;
     const userId = makeUserId(name);
     const password = makeUserPassword();
-    const hashedPassword = await bcrypt.hash(password, 12);
     const addedUser = await addDoc(collection(db, "users"), {
       username: name,
       userId: userId,
-      password: hashedPassword
+      password: password
     });
     if(addedUser.id){
       console.log("userId ===>>>", addedUser.id);
       localStorage.setItem("userId", addedUser.id);
+      router.push("/profile");
+      setLoading(false);
     }
   }
+
+  if (loading) {
+    return (
+      <div className="flex flex-col justify-center items-center h-screen loading-bar">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
       <div className="h-screen flex flex-col justify-center items-center">
