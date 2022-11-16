@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp, FaWhatsapp, FaTwitterSquare, FaFacebookSquare, FaPinterestP, FaLinkedinIn, FaTumblr } from "react-icons/fa";
 import Loader from "../components/Loader";
 import {
   FaRegCopy,
@@ -61,6 +61,33 @@ const Profile = () => {
         <Loader />
       </div>
     );
+  }
+
+  console.log("userInfo ===>>> ", userInfo);
+
+  const sentToLink = (key) => {
+    switch (key) {
+      case "WHATSAPP":
+        window.open(`https://api.whatsapp.com/send?text=🙋‍♂️Hey!!! It's ${userInfo.username}, Wanna tell something to me? Now is the right time😎, Send me a secret message n I'll never know who sent it to me. It's fun😁 Try here 👉 ${linkValue}`);
+        break;
+      case "FACEBOOK":
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${linkValue}`);
+        break;
+      case "TWITTER":
+        window.open(`https://twitter.com/intent/tweet?text=🙋‍♂️Hey!!! It's ${userInfo.username}, Wanna tell something to me? Now is the right time😎, Send me a secret message n I'll never know who sent it to me. It's fun😁 Try here 👉 ${linkValue}`);
+        break;
+      case "PINTEREST":
+        window.open(`http://pinterest.com/pin/create/button/?url=${linkValue}`);
+        break;
+      case "LINKEDIN":
+        window.open(`http://www.linkedin.com/shareArticle?mini=true&url=${linkValue}`);
+        break;
+      case "TUMBLR":
+        window.open(`http://www.tumblr.com/share?v=3&u=${linkValue}`);
+        break;
+      default:
+        break;
+    }
   }
 
   return (
@@ -135,7 +162,10 @@ const Profile = () => {
             value={linkValue}
           />
           <div className="flex flex-col justify-center items-center mt-2">
-            <CopyToClipboard text={linkValue} onCopy={() => setLinkCopied(true)}>
+            <CopyToClipboard
+              text={linkValue}
+              onCopy={() => setLinkCopied(true)}
+            >
               <button
                 type="submit"
                 className="bg-stone-500 w-1/2 flex items-center justify-center items-center py-2 rounded-md"
@@ -146,6 +176,92 @@ const Profile = () => {
                 </span>
               </button>
             </CopyToClipboard>
+          </div>
+          <div className="flex justify-center bg-green-400 mt-2 rounded-md" onClick={() => sentToLink("WHATSAPP")}>
+            <button className="flex justify-center items-center p-2">
+              <span>
+                <FaWhatsapp
+                  style={{
+                    fontSize: "25px",
+                    fontWeight: "bold",
+                    color: "white",
+                  }}
+                />
+              </span>
+              <span
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+                className="ml-1 font-bold text-white"
+              >
+                Add to story
+              </span>
+            </button>
+          </div>
+          <div className="flex justify-center bg-blue-600 mt-2 rounded-md" onClick={() => sentToLink("FACEBOOK")}>
+            <button className="flex justify-center items-center p-2">
+              <span
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+                className="ml-1 font-bold text-white"
+              >
+                Share on
+              </span>
+              <span className="ml-1">
+                <FaFacebookSquare
+                  style={{
+                    fontSize: "25px",
+                    fontWeight: "bold",
+                    color: "white",
+                  }}
+                />
+              </span>
+            </button>
+          </div>
+          <div className="flex justify-center bg-sky-400 mt-2 rounded-md" onClick={() => sentToLink("TWITTER")}>
+            <button className="flex justify-center items-center p-2">
+              <span
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+                className="ml-1 font-bold text-white"
+              >
+                Share on
+              </span>
+              <span className="ml-1">
+                <FaTwitterSquare
+                  style={{
+                    fontSize: "25px",
+                    fontWeight: "bold",
+                    color: "white",
+                  }}
+                />
+              </span>
+            </button>
+          </div>
+          <div className="mt-2 flex justify-center items-center">
+            <span className="p-2 bg-rose-800 mx-2 rounded-md"onClick={() => sentToLink("PINTEREST")} >
+              <FaPinterestP
+                style={{
+                  fontSize: "25px",
+                  fontWeight: "bold",
+                  color: "white",
+                }}
+              />
+            </span>
+            <span className="p-2 bg-sky-700 mx-2 rounded-md" onClick={() => sentToLink("LINKEDIN")}>
+              <FaLinkedinIn
+                style={{
+                  fontSize: "25px",
+                  fontWeight: "bold",
+                  color: "white",
+                }}
+              />
+            </span>
+            <span className="p-2 bg-sky-900 mx-2 rounded-md" onClick={() => sentToLink("TUMBLR")}>
+              <FaTumblr
+                style={{
+                  fontSize: "25px",
+                  fontWeight: "bold",
+                  color: "white",
+                }}
+              />
+            </span>
           </div>
         </div>
       </div>
