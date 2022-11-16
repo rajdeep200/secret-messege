@@ -73,7 +73,7 @@ export default function Home() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               style={{ fontFamily: "'Roboto', sans-serif" }}
-              className="py-3 px-5 mb-3 font-semibold shadow-inner border-2 rounded-lg border-green-600 focus:border-green-900 focus:outline-none"
+              className="py-3 px-5 mb-3 shadow-inner border-2 rounded-lg border-green-600 focus:border-green-900 focus:outline-none"
             />
           </div>
           <div>
