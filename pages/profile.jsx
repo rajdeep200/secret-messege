@@ -49,6 +49,12 @@ const Profile = () => {
     setExpanded(!expanded);
   };
 
+  const handleLogout = () => {
+    router.push("/");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userInfo");
+  }
+
   if (linkCopied) {
     setTimeout(() => {
       setLinkCopied(false);
@@ -142,6 +148,9 @@ const Profile = () => {
                   These credentials are required to log in from anywhere! PIN
                   cannot be changed back!
                 </div>
+              </div>
+              <div className="flex justify-end items-center">
+                <button onClick={handleLogout} style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-sm font-bold bg-red-600 py-1 px-2 mt-2 mr-1 text-white rounded-md" >Log Out</button>
               </div>
             </div>
           )}
