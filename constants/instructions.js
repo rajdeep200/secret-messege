@@ -1,7 +1,7 @@
 export const instructions = [
     {
         id:"1",
-        instruction: "😃Get anonymous feedback 😉 from your friends, coworkers and family members.😁"
+        instruction: "😃Get anonymous feedback 😉 from your friends, coworkers and family members.😁 Send secret message to a friend 🤩"
     },
     {
         id:"2",
