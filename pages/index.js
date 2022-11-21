@@ -85,7 +85,7 @@ export default function Home() {
               👉 Create My Link 👈
             </button>
           </div>
-          <div style={{ fontFamily: "'Varela Round', sans-serif" }} className="text-md mt-4">Already have an account? 👉 <span className="font-bold text-blue-800 underline">Login</span></div>
+          <div style={{ fontFamily: "'Varela Round', sans-serif" }} className="text-md mt-4">Already have an account? 👉 <span className="font-bold text-blue-800 underline" onClick={() => router.push("/login")} >Login</span></div>
         </div>
       </div>
     </div>
