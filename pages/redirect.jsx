@@ -22,7 +22,7 @@ const Redirect = () => {
             className="text-center text-sm text-blue-600"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
-            Now it's your turn to create your own link🤩
+            {"Now it's your turn to create your own link🤩"}
           </div>
           <div
             className="text-center text-sm text-blue-600"
