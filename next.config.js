@@ -3,10 +3,15 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    unoptimized: true,
-    loader: 'imgix',
-    path: 'https://example.com/myaccount/'
-  }
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+        port: '',
+        pathname: '/XbZFM9b/**',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig

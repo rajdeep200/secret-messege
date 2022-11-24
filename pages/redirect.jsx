@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { FcSms } from "react-icons/fc";
 
 const Redirect = () => {
   const router = useRouter();
@@ -13,12 +14,8 @@ const Redirect = () => {
         >
           ✅ Message sent successfully 🥳
         </div>
-        <div className="flex justify-center items-center">
-          <img
-            src="https://i.ibb.co/XbZFM9b/message.png"
-            alt="Message"
-            className="w-1/4"
-          />
+        <div className="flex justify-center items-center mb-4">
+          <FcSms style={{fontSize:"40px", boxShadow:"2px 2px 10px #a6a6a6", padding:"2px", borderRadius:"5px"}} />
         </div>
         <div className="mx-2">
           <div
