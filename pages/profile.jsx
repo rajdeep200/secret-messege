@@ -150,7 +150,13 @@ const Profile = () => {
                 </div>
               </div>
               <div className="flex justify-end items-center">
-                <button onClick={handleLogout} style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-sm font-bold bg-red-600 py-1 px-2 mt-2 mr-1 text-white rounded-md" >Log Out</button>
+                <button
+                  onClick={handleLogout}
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  className="text-sm font-bold bg-red-600 py-1 px-2 mt-2 mr-1 text-white rounded-md"
+                >
+                  Log Out
+                </button>
               </div>
             </div>
           )}
@@ -186,7 +192,29 @@ const Profile = () => {
               </button>
             </CopyToClipboard>
           </div>
-          <div className="flex justify-center bg-green-400 mt-2 rounded-md" onClick={() => sentToLink("WHATSAPP")}>
+          <div className="border-2 border-fuchsia-500 my-2 py-2 rounded-md">
+            <div
+              className="text-center text-xs p-1 text-fuchsia-500 font-bold"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
+            >
+              Go to message board📨 & check all your messages 🤩
+            </div>
+            <div className="text-center">👇👇👇</div>
+            <div className="flex flex-col justify-center items-center mt-2">
+              <button
+                type="submit"
+                className="bg-fuchsia-500 w-1/2 flex items-center justify-center items-center py-2 rounded-md"
+              >
+                <span className="text-white font-semibold ml-1" onClick={() => router.push(`/messages/${userId}`)}>
+                  Show Messages 😄
+                </span>
+              </button>
+            </div>
+          </div>
+          <div
+            className="flex justify-center bg-green-400 mt-2 rounded-md"
+            onClick={() => sentToLink("WHATSAPP")}
+          >
             <button className="flex justify-center items-center p-2">
               <span>
                 <FaWhatsapp
@@ -205,7 +233,10 @@ const Profile = () => {
               </span>
             </button>
           </div>
-          <div className="flex justify-center bg-blue-600 mt-2 rounded-md" onClick={() => sentToLink("FACEBOOK")}>
+          <div
+            className="flex justify-center bg-blue-600 mt-2 rounded-md"
+            onClick={() => sentToLink("FACEBOOK")}
+          >
             <button className="flex justify-center items-center p-2">
               <span
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
@@ -224,7 +255,10 @@ const Profile = () => {
               </span>
             </button>
           </div>
-          <div className="flex justify-center bg-sky-400 mt-2 rounded-md" onClick={() => sentToLink("TWITTER")}>
+          <div
+            className="flex justify-center bg-sky-400 mt-2 rounded-md"
+            onClick={() => sentToLink("TWITTER")}
+          >
             <button className="flex justify-center items-center p-2">
               <span
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
@@ -244,7 +278,10 @@ const Profile = () => {
             </button>
           </div>
           <div className="mt-2 flex justify-center items-center">
-            <span className="p-2 bg-rose-800 mx-2 rounded-md"onClick={() => sentToLink("PINTEREST")} >
+            <span
+              className="p-2 bg-rose-800 mx-2 rounded-md"
+              onClick={() => sentToLink("PINTEREST")}
+            >
               <FaPinterestP
                 style={{
                   fontSize: "25px",
@@ -253,7 +290,10 @@ const Profile = () => {
                 }}
               />
             </span>
-            <span className="p-2 bg-sky-700 mx-2 rounded-md" onClick={() => sentToLink("LINKEDIN")}>
+            <span
+              className="p-2 bg-sky-700 mx-2 rounded-md"
+              onClick={() => sentToLink("LINKEDIN")}
+            >
               <FaLinkedinIn
                 style={{
                   fontSize: "25px",
@@ -262,7 +302,10 @@ const Profile = () => {
                 }}
               />
             </span>
-            <span className="p-2 bg-sky-900 mx-2 rounded-md" onClick={() => sentToLink("TUMBLR")}>
+            <span
+              className="p-2 bg-sky-900 mx-2 rounded-md"
+              onClick={() => sentToLink("TUMBLR")}
+            >
               <FaTumblr
                 style={{
                   fontSize: "25px",

@@ -10,22 +10,22 @@ const Redirect = () => {
       <div className="bg-white flex flex-col justify-center items-center mx-3 border-4 shadow-inner border-blue-700 rounded-xl py-5">
         <div
           style={{ fontFamily: "'DM Sans', sans-serif" }}
-          className="bg-green-500 text-white px-2 py-1 rounded-sm"
+          className="bg-green-500 text-white px-2 py-1 rounded-md mb-4"
         >
           ✅ Message sent successfully 🥳
         </div>
         <div className="flex justify-center items-center mb-4">
           <FcSms style={{fontSize:"40px", boxShadow:"2px 2px 10px #a6a6a6", padding:"2px", borderRadius:"5px"}} />
         </div>
-        <div className="mx-2">
+        <div className="mx-2 px-2">
           <div
-            className="text-center text-sm text-blue-600"
+            className="text-center text-md text-blue-600"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             {"Now it's your turn to create your own link🤩"}
           </div>
           <div
-            className="text-center text-sm text-blue-600"
+            className="text-center text-md text-blue-600"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             Click below to generate your secret message link
