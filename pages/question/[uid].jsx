@@ -6,13 +6,13 @@ import { FcSms } from "react-icons/fc";
 
 const AnsPage = () => {
   const router = useRouter();
-  const { userId } = router.query;
+  const { uid } = router.query;
   const [username, setUsername] = useState("");
   const [msgInput, setMsgInput] = useState("");
   const [error, setError] = useState(false);
   const getUserInfo = async () => {
     try {
-      const docRef = doc(db, "users", userId);
+      const docRef = doc(db, "users", uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
@@ -29,7 +29,7 @@ const AnsPage = () => {
     try {
       if(msgInput.length != 0){
         console.log("msgInput ==>> ", msgInput);
-        const docRef = doc(db, "users", userId);
+        const docRef = doc(db, "users", uid);
         await updateDoc(docRef, {
           answers: arrayUnion(msgInput),
         });
@@ -45,10 +45,10 @@ const AnsPage = () => {
   }, 3000);
 
   useEffect(() => {
-    if (userId) {
+    if (uid) {
       getUserInfo();
     }
-  }, [userId]);
+  }, [uid]);
 
   return (
     <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">

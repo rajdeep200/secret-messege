@@ -15,7 +15,7 @@ export default function Home() {
       router.push("/profile");
     }
   }, [router])
-  
+
   const handleSubmit = async () => {
     setLoading(true);
     if (name === "") return;
