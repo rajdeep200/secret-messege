@@ -4,6 +4,7 @@ import { db } from "../../firebaseConfig";
 import Router, { useRouter } from "next/router";
 import Loader from "../../components/Loader";
 import MsgCard from "../../components/MsgCard";
+import { generateRandomStyle } from "../../utils/functions";
 
 const MessageBoard = () => {
   const router = useRouter();
@@ -52,14 +53,18 @@ const MessageBoard = () => {
   return (
     <div>
       <div
-        className="bg-blue-600 text-white w-1/3 text-center py-1 mt-2 ml-2 rounded-md"
+        className="bg-blue-600 text-white w-2/3 text-center py-1 mt-2 ml-2 rounded-md"
         onClick={() => router.push("/profile")}
       >
         ⬅ Back to Profile
       </div>
       <div className="m-2">
         {msgList &&
-          msgList.map((msg, id) => <MsgCard key={id} message={msg} />)}
+          msgList.map((msg, id) => {
+            const currentMsgCardStyle = generateRandomStyle();
+            console.log("currentMsgCardStyle ==>>> ", currentMsgCardStyle);
+            return <MsgCard key={id} message={msg} currentMsgCardStyle={currentMsgCardStyle} />
+          })}
       </div>
     </div>
   );

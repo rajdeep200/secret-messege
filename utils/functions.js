@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { msgCardStyles } from "../constants/msgCardStyles";
 
 export const makeUserId = (username) => {
   return (
@@ -14,4 +15,8 @@ export const makeUserPassword = () => {
 export const generateToken = (id) => {
   return jwt.sign({ id }, "rajdeep", { expiresIn: "7d" });
 };
+
+export const generateRandomStyle = () => {
+  return msgCardStyles[Math.floor(Math.random()*msgCardStyles.length)]
+}
 
