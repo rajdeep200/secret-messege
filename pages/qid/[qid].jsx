@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from "next/router";
 
-const demo = () => {
+const Demo = () => {
   const router = useRouter();
   const {qid} = router.query;
   return (
@@ -9,4 +9,4 @@ const demo = () => {
   )
 }
 
-export default demo
+export default Demo
