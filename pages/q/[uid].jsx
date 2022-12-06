@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { getDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { FcSms } from "react-icons/fc";
+import GenerateIcon from '../../components/GenerateIcon'
 
 const AnsPage = () => {
   const router = useRouter();
@@ -54,8 +55,8 @@ const AnsPage = () => {
     <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
       <div className="flex flex-col justify-center items-center pt-4"></div>
       <div className="bg-white flex flex-col justify-center items-center mx-3 border-4 shadow-inner border-blue-700 rounded-xl py-5">
-        <div className="flex justify-center items-center mb-4">
-          <FcSms style={{fontSize:"40px", boxShadow:"2px 2px 10px #a6a6a6", padding:"2px", borderRadius:"5px"}} />
+        <div className="flex justify-center items-center mb-3 p-2 rounded-md shadow-md shadow-gray-400">
+          <GenerateIcon icon={"message-logo-2"} size={"50px"} />
         </div>
         <div
           style={{ fontFamily: "'DM Sans', sans-serif" }}

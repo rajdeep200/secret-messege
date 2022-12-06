@@ -42,7 +42,7 @@ const Profile = () => {
     }
     setUserId(localStorage.getItem("userId"));
     getUserInfo();
-    setLinkValue(`${window.location.origin}/question/${userId}`)
+    setLinkValue(`${window.location.origin}/q/${userId}`)
   }, [router, userId]);
 
   const handleAccordion = () => {

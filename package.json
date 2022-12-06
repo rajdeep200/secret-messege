@@ -10,6 +10,7 @@
     "export": "next export"
   },
   "dependencies": {
+    "@svgr/webpack": "^6.5.1",
     "axios": "^0.27.2",
     "firebase": "^9.9.3",
     "jsonwebtoken": "^8.5.1",

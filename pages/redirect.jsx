@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { FcSms } from "react-icons/fc";
+import GenerateIcon from '../components/GenerateIcon'
 
 const Redirect = () => {
   const router = useRouter();
@@ -15,7 +16,7 @@ const Redirect = () => {
           ✅ Message sent successfully 🥳
         </div>
         <div className="flex justify-center items-center mb-4">
-          <FcSms style={{fontSize:"40px", boxShadow:"2px 2px 10px #a6a6a6", padding:"2px", borderRadius:"5px"}} />
+          <GenerateIcon icon={"message-mobile-logo"} size={"80px"} />
         </div>
         <div className="mx-2 px-2">
           <div
