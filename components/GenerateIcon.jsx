@@ -3,7 +3,6 @@ import React from "react";
 import dynamic from "next/dynamic";
 
 const GenerateIcon = ({ icon, size, color, className }) => {
-  console.log("icon ==>>> ", icon, size, color, className);
   const IconGeneralEZLogo = dynamic(() =>
     import("../assets/icons/icons_general_ezlogo.svg")
   );

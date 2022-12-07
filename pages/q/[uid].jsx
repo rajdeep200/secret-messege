@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
-import { FcSms } from "react-icons/fc";
 import GenerateIcon from '../../components/GenerateIcon'
 
 const AnsPage = () => {
@@ -30,9 +29,14 @@ const AnsPage = () => {
     try {
       if(msgInput.length != 0){
         console.log("msgInput ==>> ", msgInput);
+        const ts = `${new Date().getHours()}:${new Date().getMinutes()} ${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`
+        let msgObj = {
+          msg: msgInput,
+          timestamp: ts
+        }
         const docRef = doc(db, "users", uid);
         await updateDoc(docRef, {
-          answers: arrayUnion(msgInput),
+          answers: arrayUnion(msgObj),
         });
         router.push("/redirect");
       }
