@@ -58,12 +58,37 @@ const MessageBoard = () => {
       >
         ⬅ Back to Profile
       </div>
+      {msgList && msgList.length < 1 && (
+        <div className="flex justify-center items-center">
+          <div className="p-5 mt-10">
+            <div
+              style={{ fontFamily: "'Fredoka One', cursive" }}
+              className="text-gray-400 text-md"
+            >
+              Sorry🙁...
+            </div>
+            <div
+              style={{ fontFamily: "'Fredoka One', cursive" }}
+              className="text-gray-400 text-md"
+            >
+              You didn't receive any messages yet
+            </div>
+            <div className="mt-12 text-center text-pink-500" style={{ fontFamily: "'Fredoka One', cursive" }}>Hey cheer up😃...Share your link to your friends and fill your board with funny messages & feedbacks😉</div>
+          </div>
+        </div>
+      )}
       <div className="m-2">
         {msgList &&
           msgList.map((msg, id) => {
             const currentMsgCardStyle = generateRandomStyle();
             console.log("currentMsgCardStyle ==>>> ", currentMsgCardStyle);
-            return <MsgCard key={id} message={msg} currentMsgCardStyle={currentMsgCardStyle} />
+            return (
+              <MsgCard
+                key={id}
+                message={msg}
+                currentMsgCardStyle={currentMsgCardStyle}
+              />
+            );
           })}
       </div>
     </div>
