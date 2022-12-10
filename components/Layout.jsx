@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
       >
         <div className="flex justify-center items-center">
           <GenerateIcon icon="message-logo-2" size="30px" />
-          <div className="ml-2">secretmessagedare.online</div>
+          <div className="ml-2">secretmessagedare.link</div>
         </div>
       </div>
       {children}
