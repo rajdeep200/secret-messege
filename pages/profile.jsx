@@ -97,7 +97,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="h-screen px-1 py-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+    <div className="px-1 py-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
       <div className="bg-white flex flex-col justify-center items-center border-4 shadow-inner border-blue-700 rounded-xl py-4">
         <div
           style={{ fontFamily: "'DM Sans', sans-serif" }}
