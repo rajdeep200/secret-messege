@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
       {children}
       <div style={{ fontFamily: "'Varela Round', sans-serif" }} className="w-full flex justify-evenly items-center bg-blue-700 text-white text-md py-4">
         <p className="p-2 bg-white text-blue-700 rounded-lg" onClick={() => router.push('/about')}>🤗 About Us</p>
-        <p className="p-2 bg-white text-blue-700 rounded-lg">🤙🏻 Contact Us</p>
+        <p className="p-2 bg-white text-blue-700 rounded-lg" onClick={() => window.location.href = "mailto:dareforyoumate@gmail.com"}>🤙🏻 Contact Us</p>
       </div>
     </div>
   );
