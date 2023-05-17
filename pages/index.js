@@ -63,7 +63,7 @@ export default function Home() {
             />
           </div>
           <div>
-            <Image width={100} alt="Secret message link 2023" src="https://i.ibb.co/8NBTt4s/waist-up-shot-excited-confident-charming-brunet-man-with-beard-moustache-pointing-down-smiling-broad.png" />
+            <Image width={100} preview={false} alt="Secret message link 2023" src="https://i.ibb.co/8NBTt4s/waist-up-shot-excited-confident-charming-brunet-man-with-beard-moustache-pointing-down-smiling-broad.png" />
           </div>
           <div>
             <input
