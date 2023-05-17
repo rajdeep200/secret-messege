@@ -1,25 +1,54 @@
-import React from "react";
-import GenerateIcon from "./GenerateIcon";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { Image, Drawer } from "antd";
 
 const Layout = ({ children }) => {
   const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
   return (
     <div>
       <div
-        className="text-center text-white text-xl text-center py-2 px-2 bg-blue-700 shadow-lg"
-        style={{ fontFamily: "'Courgette', cursive" }}
+        className="fixed top-0 right-0 left-0 text-center text-white text-lg text-center py-2 px-4 bg-blue-700 shadow-lg"
+        style={{ fontFamily: "'Nunito', sans-serif" }}
       >
-        <div className="flex justify-center items-center" onClick={() => router.push("/")}>
-          <GenerateIcon icon="message-logo-2" size="30px" />
+        <div className="flex justify-between items-center">
+          <Image
+            src="https://i.ibb.co/mc8rVCP/home-2.png"
+            width={30}
+            alt="Secret message link 2023"
+            preview={false}
+            onClick={() => router.push("/")}
+            className="cursor-pointer"
+          />
           <div className="ml-2">SecretMessageDare.Link</div>
+          <Image
+            src="https://i.ibb.co/qj2Ht32/user-3.png"
+            width={30}
+            alt="Secret message link 2023"
+            preview={false}
+            onClick={showDrawer}
+            className="cursor-pointer"
+          />
         </div>
       </div>
+      <Drawer
+        width={250}
+        title="Basic Drawer"
+        placement="right"
+        onClose={onClose}
+        open={open}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
       {children}
-      <div style={{ fontFamily: "'Varela Round', sans-serif" }} className="absolute w-full flex justify-evenly items-center bg-blue-700 text-white text-md py-4">
-        <p className="p-2 bg-white text-blue-700 rounded-lg" onClick={() => router.push('/about')}>🤗 About Us</p>
-        <p className="p-2 bg-white text-blue-700 rounded-lg" onClick={() => window.location.href = "mailto:dareforyoumate@gmail.com"}>🤙🏻 Contact Us</p>
-      </div>
     </div>
   );
 };

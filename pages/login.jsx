@@ -1,12 +1,6 @@
 import React, { useState } from "react";
-import {
-  getDoc,
-  doc,
-  collection,
-  query,
-  where,
-  getDocs,
-} from "firebase/firestore";
+import { Input, Button, Image } from "antd";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { useRouter } from "next/router";
 
@@ -52,12 +46,12 @@ const Login = () => {
     setErrorMsg(null);
   }, 3000);
   return (
-    <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
-      <div className="flex flex-col justify-center items-center pt-4">
-        <div className="bg-white flex flex-col justify-center items-center mx-3 border-4 shadow-inner border-blue-700 rounded-xl py-5">
+    <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex justify-center items-center">
+      <div className="flex flex-col justify-center items-center pt-4 mx-3">
+        <div className="bg-white flex flex-col justify-center items-center w-full mx-2 shadow-inner rounded-xl py-5 shadow-lg shadow-black">
           <div
-            style={{ fontFamily: "'Fredoka One', cursive" }}
-            className="text-xl p-2 mx-2 mb-4 bg-blue-700 border-2 border-blue-600 rounded-2xl text-white"
+            style={{ fontFamily: "'Varela Round', sans-serif" }}
+            className="text-xl text-center w-1/2 py-2 px-4 mx-5 mb-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg text-white"
           >
             Login
           </div>
@@ -69,26 +63,46 @@ const Login = () => {
               {errorMsg}
             </p>
           )}
+          <div>
+            <Image
+              width={80}
+              src="https://i.ibb.co/W5qPQpN/password.png"
+              alt="Secret message link 2023"
+            />
+          </div>
           <div className="flex flex-col justifuy-center items-center mx-8 my-4">
-            <input
+            {/* <input
               type="text"
               placeholder="Enter User Id..."
               className="py-3 px-5 mb-3 shadow-inner border-2 rounded-lg border-green-600 focus:border-green-900 focus:outline-none"
               onChange={(e) => setUserId(e.target.value)}
+            /> */}
+            <Input
+              className="py-3 px-5 mb-3 shadow-inner border-2 text-md rounded-lg shadow-green-500 focus:border-green-500 focus:outline-none"
+              placeholder="Enter User Id..."
+              onChange={(e) => setUserId(e.target.value)}
+              value={userId}
             />
-            <input
+            <Input
+              className="py-3 px-5 mb-3 shadow-inner border-2 text-md rounded-lg shadow-green-500 focus:border-green-500 focus:outline-none"
+              placeholder="Enter Password..."
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              type="password"
+            />
+            {/* <input
               type="password"
               placeholder="Enter Password..."
               className="py-3 px-5 mb-3 shadow-inner border-2 rounded-lg border-green-600 focus:border-green-900 focus:outline-none"
               onChange={(e) => setPassword(e.target.value)}
-            />
-            <button
+            /> */}
+            <Button
               style={{ fontFamily: "'Roboto', sans-serif" }}
-              className="shadow-md text-yellow-300 bg-blue-700 px-4 py-3 rounded-xl focus:bg-blue-700"
+              className="w-full shadow-md text-white bg-blue-500 rounded-md h-10 focus:bg-blue-700"
               onClick={handleLogin}
             >
-              👉 Login 👈
-            </button>
+              Login
+            </Button>
           </div>
         </div>
       </div>

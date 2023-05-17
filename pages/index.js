@@ -4,17 +4,17 @@ import { makeUserId, makeUserPassword } from "../utils/functions";
 import { db } from "../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
-import Loader from '../components/Loader';
+import Loader from "../components/Loader";
 
 export default function Home() {
   const [name, setName] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   useEffect(() => {
-    if(localStorage.getItem("userInfo")){
+    if (localStorage.getItem("userInfo")) {
       router.push("/profile");
     }
-  }, [router])
+  }, [router]);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -24,15 +24,15 @@ export default function Home() {
     const addedUser = await addDoc(collection(db, "users"), {
       username: name,
       userId: userId,
-      password: password
+      password: password,
     });
-    if(addedUser.id){
+    if (addedUser.id) {
       console.log("userId ===>>>", addedUser.id);
       localStorage.setItem("userId", addedUser.id);
       router.push("/profile");
       setLoading(false);
     }
-  }
+  };
 
   if (loading) {
     return (
@@ -43,8 +43,8 @@ export default function Home() {
   }
 
   return (
-    <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
-      <div className="flex flex-col justify-center items-center pt-4">
+    <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex justify-center items-center">
+      <div className="">
         <div className="bg-white flex flex-col justify-center items-center mx-3 rounded-xl py-5 px-8">
           <div
             className="text-lg px-3 py-2 mx-2 mb-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl text-white"
@@ -52,7 +52,10 @@ export default function Home() {
           >
             Secret Message Dare 2023
           </div>
-          <div style={{ fontFamily: "'Varela Round', sans-serif" }} className="text-cyan-500 text-center text-sm mb-3">
+          <div
+            style={{ fontFamily: "'Varela Round', sans-serif" }}
+            className="text-cyan-500 text-center text-sm mb-3"
+          >
             Below are the steps to create your link
           </div>
           <div>
@@ -63,7 +66,12 @@ export default function Home() {
             />
           </div>
           <div>
-            <Image width={100} preview={false} alt="Secret message link 2023" src="https://i.ibb.co/8NBTt4s/waist-up-shot-excited-confident-charming-brunet-man-with-beard-moustache-pointing-down-smiling-broad.png" />
+            <Image
+              width={100}
+              preview={false}
+              alt="Secret message link 2023"
+              src="https://i.ibb.co/8NBTt4s/waist-up-shot-excited-confident-charming-brunet-man-with-beard-moustache-pointing-down-smiling-broad.png"
+            />
           </div>
           <div>
             <input
@@ -81,19 +89,20 @@ export default function Home() {
               className="shadow-md text-white bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2 rounded-xl focus:bg-blue-700"
               onClick={handleSubmit}
             >
-              Create My Link 
+              Create My Link
             </button>
           </div>
           <div
             style={{ fontFamily: "'Varela Round', sans-serif" }}
-            className="text-md mt-4"
+            className="text-md mt-4 text-gray-500 flex justify-center items-center"
           >
-            Already have an account? 👉{" "}
+            Already have an account?
             <span
-              className="font-bold text-blue-800 underline"
+              className="font-bold text-black bg-gray-200 rounded-lg py-1 px-2 flex justify-center items-center ml-1 cursor-pointer"
               onClick={() => router.push("/login")}
             >
-              Login
+              <Image width={15} src="https://i.ibb.co/NZVqvcS/user.png" alt="Secret message link 2023" />
+              <div className="text-sm ml-1 text-gray-600">Login</div>
             </span>
           </div>
         </div>
