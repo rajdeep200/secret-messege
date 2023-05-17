@@ -13,6 +13,7 @@ const nextConfig = {
     return config;
   },
   images: {
+    domains : ['imgbb.com', 'i.ibb.co'],
     remotePatterns: [
       {
         protocol: 'https',

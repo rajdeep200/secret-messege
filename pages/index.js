@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { instructions } from "../constants/instructions";
+import { Image } from "antd";
 import { makeUserId, makeUserPassword } from "../utils/functions";
 import { db } from "../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
@@ -45,27 +45,26 @@ export default function Home() {
   return (
     <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
       <div className="flex flex-col justify-center items-center pt-4">
-        <div className="bg-white flex flex-col justify-center items-center mx-3 border-4 shadow-inner border-blue-700 rounded-xl py-5">
+        <div className="bg-white flex flex-col justify-center items-center mx-3 rounded-xl py-5 px-8">
           <div
-            className="text-xl p-2 mx-2 mb-4 bg-blue-700 border-2 border-blue-600 rounded-2xl text-white"
-            style={{ fontFamily: "'Fredoka One', cursive" }}
+            className="text-lg px-3 py-2 mx-2 mb-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl text-white"
+            style={{ fontFamily: "'Varela Round', sans-serif" }}
           >
-            Secret Message Dare 2022
+            Secret Message Dare 2023
           </div>
-          <div className="">
-            <ul className="">
-              {instructions.map((instruction) => (
-                <li
-                  key={instruction.id}
-                  style={{ fontFamily: "'Varela Round', sans-serif" }}
-                  className="text-sm mx-6 mb-5 font-extrabold text-purple-900"
-                >
-                  {instruction.instruction}
-                </li>
-              ))}
-            </ul>
+          <div style={{ fontFamily: "'Varela Round', sans-serif" }} className="text-cyan-500 text-center text-sm mb-3">
+            Below are the steps to create your link
           </div>
-          <div className="text-xl mb-2">👇🏻 👇🏻 👇🏻</div>
+          <div>
+            <Image
+              width={200}
+              alt="Secret Message Link Creation Steps"
+              src="https://i.ibb.co/mF38Ywd/site-promo-steps.png"
+            />
+          </div>
+          <div>
+            <Image width={100} alt="Secret message link 2023" src="https://i.ibb.co/8NBTt4s/waist-up-shot-excited-confident-charming-brunet-man-with-beard-moustache-pointing-down-smiling-broad.png" />
+          </div>
           <div>
             <input
               type="text"
@@ -73,16 +72,16 @@ export default function Home() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               style={{ fontFamily: "'Roboto', sans-serif" }}
-              className="py-3 px-5 mb-3 shadow-inner border-2 rounded-lg border-green-600 focus:border-green-900 focus:outline-none"
+              className="py-3 px-5 mb-3 shadow-inner shadow-black rounded-lg border-green-600 focus:border-green-900 focus:outline-none"
             />
           </div>
           <div>
             <button
-              style={{ fontFamily: "'Roboto', sans-serif" }}
-              className="shadow-md text-yellow-300 bg-blue-700 px-4 py-3 rounded-xl focus:bg-blue-700"
+              style={{ fontFamily: "'Varela Round', sans-serif" }}
+              className="shadow-md text-white bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2 rounded-xl focus:bg-blue-700"
               onClick={handleSubmit}
             >
-              👉 Create My Link 👈
+              Create My Link 
             </button>
           </div>
           <div
