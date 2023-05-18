@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { Image, Drawer } from "antd";
+import { Image, Drawer, Space, Button } from "antd";
 
 const Layout = ({ children }) => {
   const router = useRouter();
@@ -38,15 +38,85 @@ const Layout = ({ children }) => {
         </div>
       </div>
       <Drawer
-        width={250}
-        title="Basic Drawer"
+        width={280}
         placement="right"
         onClose={onClose}
         open={open}
+        extra={
+          <Space>
+            <Button
+              className="shadow-md text-white bg-gradient-to-r from-cyan-500 to-blue-500"
+              onClick={() => {
+                router.push("/login");
+                setOpen(false);
+              }}
+            >
+              Login
+            </Button>
+            <Button
+              className="shadow-md text-white bg-gradient-to-r from-cyan-500 to-blue-500"
+              onClick={() => {
+                router.push("/");
+                setOpen(false);
+              }}
+            >
+              Sign Up
+            </Button>
+          </Space>
+        }
+        bodyStyle={{
+          paddingBottom: 50,
+        }}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <div
+          className="flex items-center w-full border-1 border-cyan-200 px-3 py-3 mb-5 rounded-md shadow-md shadow-slate-300 active:shadow-inner active:shadow-slate-300"
+          onClick={() => {
+            router.push("/about");
+            setOpen(false);
+          }}
+        >
+          <Image
+            src="https://i.ibb.co/zPFJv6n/information.png"
+            width={20}
+            alt="Secret message link 2023"
+            preview={false}
+            className="cursor-pointer"
+          />
+          <div className="ml-2">About Us</div>
+        </div>
+        <div className="flex items-center w-full border-1 border-cyan-300 px-3 py-3 mb-5 rounded-md shadow-md shadow-slate-300 active:shadow-inner active:shadow-slate-300">
+          <Image
+            src="https://i.ibb.co/MNPqZdh/headphones.png"
+            width={20}
+            alt="Secret message link 2023"
+            preview={false}
+            // onClick={() => router.push("/")}
+            className="cursor-pointer"
+          />
+          <div className="ml-2">Contact Us</div>
+        </div>
+        <div className="flex items-center w-full border-1 border-cyan-400 px-3 py-3 mb-5 rounded-md shadow-md shadow-slate-300 active:shadow-inner active:shadow-slate-300">
+          <Image
+            src="https://i.ibb.co/s9JbpvT/privacy-policy.png"
+            width={20}
+            alt="Secret message link 2023"
+            preview={false}
+            // onClick={() => router.push("/")}
+            className="cursor-pointer"
+          />
+          <div className="ml-2">Privacy Policy</div>
+        </div>
+        <div className="flex items-center w-full border-1 border-cyan-500 px-3 py-3 mb-5 rounded-md shadow-md shadow-slate-300 active:shadow-inner active:shadow-slate-300">
+          <Image
+            src="https://i.ibb.co/4Wn3bYY/terms-and-conditions.png"
+            width={20}
+            alt="Secret message link 2023"
+            preview={false}
+            // onClick={() => router.push("/")}
+            className="cursor-pointer"
+          />
+          <div className="ml-2">Terms & Conditions</div>
+        </div>
       </Drawer>
       {children}
     </div>

@@ -68,15 +68,10 @@ const Login = () => {
               width={80}
               src="https://i.ibb.co/W5qPQpN/password.png"
               alt="Secret message link 2023"
+              preview={false}
             />
           </div>
           <div className="flex flex-col justifuy-center items-center mx-8 my-4">
-            {/* <input
-              type="text"
-              placeholder="Enter User Id..."
-              className="py-3 px-5 mb-3 shadow-inner border-2 rounded-lg border-green-600 focus:border-green-900 focus:outline-none"
-              onChange={(e) => setUserId(e.target.value)}
-            /> */}
             <Input
               className="py-3 px-5 mb-3 shadow-inner border-2 text-md rounded-lg shadow-green-500 focus:border-green-500 focus:outline-none"
               placeholder="Enter User Id..."
@@ -90,12 +85,6 @@ const Login = () => {
               value={password}
               type="password"
             />
-            {/* <input
-              type="password"
-              placeholder="Enter Password..."
-              className="py-3 px-5 mb-3 shadow-inner border-2 rounded-lg border-green-600 focus:border-green-900 focus:outline-none"
-              onChange={(e) => setPassword(e.target.value)}
-            /> */}
             <Button
               style={{ fontFamily: "'Roboto', sans-serif" }}
               className="w-full shadow-md text-white bg-blue-500 rounded-md h-10 focus:bg-blue-700"

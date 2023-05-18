@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex justify-center items-center">
       <div className="">
-        <div className="bg-white flex flex-col justify-center items-center mx-3 rounded-xl py-5 px-8">
+        <div className="bg-white flex flex-col justify-center items-center mx-3 rounded-xl py-5 px-8 mt-6">
           <div
             className="text-lg px-3 py-2 mx-2 mb-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl text-white"
             style={{ fontFamily: "'Varela Round', sans-serif" }}
@@ -101,7 +101,7 @@ export default function Home() {
               className="font-bold text-black bg-gray-200 rounded-lg py-1 px-2 flex justify-center items-center ml-1 cursor-pointer"
               onClick={() => router.push("/login")}
             >
-              <Image width={15} src="https://i.ibb.co/NZVqvcS/user.png" alt="Secret message link 2023" />
+              <Image width={15} src="https://i.ibb.co/NZVqvcS/user.png" preview={false} alt="Secret message link 2023" />
               <div className="text-sm ml-1 text-gray-600">Login</div>
             </span>
           </div>
