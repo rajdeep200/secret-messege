@@ -41,7 +41,11 @@ const Layout = ({ children }) => {
             width={30}
             alt="Secret message link 2023"
             preview={false}
-            onClick={() => router.push("/")}
+            onClick={() => {
+              if(!isLoggedIn){
+                router.push("/")
+              }
+            }}
             className="cursor-pointer"
           />
           <div className="ml-2">SecretMessageDare.Link</div>
@@ -86,7 +90,10 @@ const Layout = ({ children }) => {
             ) : (
               <div
                 className="flex items-center border-1 border-cyan-100 px-3 py-2 rounded-md shadow-md shadow-slate-300 active:shadow-inner active:shadow-slate-300"
-                onClick={() => router.push("/profile")}
+                onClick={() => {
+                  router.push("/profile");
+                  setOpen(false);
+                }}
               >
                 <Image
                   src="https://i.ibb.co/7VwD4Ht/user-4.png"

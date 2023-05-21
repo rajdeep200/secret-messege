@@ -31,7 +31,7 @@ export const msgCardStyles = [
     },
     {
         id: 7,
-        bgColor: "#ff33ff",
+        bgColor: "#ff66ff",
         textColor: "#000000"
     },
     {
@@ -41,12 +41,12 @@ export const msgCardStyles = [
     },
     {
         id: 9,
-        bgColor: "#ff3399",
+        bgColor: "#ff66b3",
         textColor: "#000000"
     },
     {
         id: 10,
-        bgColor: "#33cc33",
+        bgColor: "#85e085",
         textColor: "#000000"
     }
 ]

@@ -13,13 +13,13 @@ import {
   FaPinterestP,
   FaLinkedinIn,
   FaTumblr,
+  FaEnvelope
 } from "react-icons/fa";
 import Loader from "../components/Loader";
 import { FaRegCopy } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { Image, Input, Space, Spin, message } from "antd";
-import { useSelector, useDispatch } from "react-redux";
-import { setIsLoggedIn, setUserInfo } from "../redux/reducers/userSlice";
+import { Button, Image, Input, Space, Spin, message } from "antd";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -31,23 +31,6 @@ const Profile = () => {
   const [linkValue, setLinkValue] = useState("");
   const [linkCopied, setLinkCopied] = useState(false);
   const router = useRouter();
-  // const getUserInfo = async () => {
-  //   try {
-  //     let gg = userId;
-  //     const docRef = doc(db, "users", gg);
-  //     const docSnap = await getDoc(docRef);
-  //     if (docSnap.exists()) {
-  //       console.log("Document data:", docSnap.data());
-  //       setUserInfo(docSnap.data());
-  //       localStorage.setItem("userInfo", JSON.stringify(docSnap.data()));
-  //       setLoading(false);
-  //     } else {
-  //       console.log("No such document!");
-  //     }
-  //   } catch (error) {
-  //     console.log("error ===>>> ", error);
-  //   }
-  // };
   useEffect(() => {
     if (!localStorage.getItem("userId")) {
       router.push("/");
@@ -62,12 +45,6 @@ const Profile = () => {
 
   const handleAccordion = () => {
     setExpanded(!expanded);
-  };
-
-  const handleLogout = () => {
-    router.push("/");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userInfo");
   };
 
   if (linkCopied) {
@@ -116,13 +93,22 @@ const Profile = () => {
         <div className="bg-white flex flex-col justify-center items-center shadow-inner rounded-xl py-4 mt-12 mx-2 ">
           <div className="mb-3">
             <Image
-              src="https://i.ibb.co/Xy6xf0c/avatar.png"
+              src="https://i.ibb.co/Tw2kvPP/user-6.png"
               width={80}
               alt="Secret message link 2023"
               preview={false}
               className="cursor-pointer"
             />
           </div>
+          <Space className="mb-4 mt-1">
+            <Button className="p-5 flex justify-center items-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" onClick={() => router.push(`/messages/${userId}`)}>
+              <div>
+                <FaEnvelope size="15px" color="white"/>
+              </div>
+              <div className="ml-2 text-white" style={{ fontFamily: "'Varela Round', sans-serif" }}>Message Board</div>
+            </Button>
+          </Space>
+          <div></div>
           <Space direction="vertical" className="w-10/12" size={10}>
             <div>
               <p className="text-gray-500 text-xs mb-1">User Id</p>
@@ -141,9 +127,7 @@ const Profile = () => {
           </Space>
 
           <div className="w-10/12 mt-5 h-full">
-            <div className="font-normal mb-1 text-cyan-600">
-              Secret Link:
-            </div>
+            <div className="font-normal mb-1 text-cyan-600">Secret Link:</div>
             <Input
               type="text"
               className="w-full p-3 border-1 rounded-md focus:border-cyan-700 focus:outline-none border-cyan-500 text-gray-700"
@@ -154,8 +138,8 @@ const Profile = () => {
                 text={linkValue}
                 onCopy={() => {
                   messageApi.open({
-                    type: 'success',
-                    content: 'Link Copied Successfully',
+                    type: "success",
+                    content: "Link Copied Successfully",
                   });
                 }}
               >
