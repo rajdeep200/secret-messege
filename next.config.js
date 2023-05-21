@@ -23,6 +23,9 @@ const nextConfig = {
       },
     ],
   },
+  publicRuntimeConfig: {
+    GA_MEASUREMENT_ID: process.env.GA_MEASUREMENT_ID,
+  },
 }
 
 module.exports = nextConfig
