@@ -2,42 +2,49 @@ import React, { useEffect, useState } from "react";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import Router, { useRouter } from "next/router";
-import Loader from "../../components/Loader";
 import MsgCard from "../../components/MsgCard";
 import { generateRandomStyle } from "../../utils/functions";
-import { useSelector } from "react-redux";
-import { Spin, message } from "antd";
-import { getUserMessages } from "../../utils/functions";
+import { useSelector, useDispatch } from "react-redux";
+import { Spin, message, Button } from "antd";
+import { getUserMessages, deleteMessages } from "../../utils/functions";
+import { setMessages, deleteAllMessages } from "../../redux/reducers/messageSlice";
 
 const MessageBoard = () => {
+  const dispatch = useDispatch();
   const [messageApi, contextHolder] = message.useMessage();
   const router = useRouter();
   const {isLoggedIn, userInfo} = useSelector((state) => state.user)
+  const { messageList } = useSelector((state) => state.message)
   const [msgList, setMsgList] = useState([]);
   const [loading, setLoading] = useState(true);
   const { uid } = router.query;
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!isLoggedIn) {
+      console.log('localStorage.getItem', localStorage.getItem('userId') )
+      if (!localStorage.getItem('userId')) {
         router.push("/");
       } else {
         const messages = await getUserMessages(uid);
+        console.log('messages', messages)
         if (messages?.msgList) {
-          setMsgList(messages.msgList);
+          // dispatch(setMessages(messages.msgList));
+          setMsgList(messages.msgList)
           setLoading(false);
-        } else {
-          setLoading(false);
-          messageApi.open({
-            type: 'error',
-            content: 'Something Went Wrong',
-          });
         }
       }
     };
-  
     fetchData();
-  }, [isLoggedIn, messageApi, router, uid]);
+  }, [router, uid]);
+
+  const handleDelete = () => {
+    setMsgList([]);
+    deleteMessages(uid)
+    messageApi.open({
+      type: "success",
+      content: "Message Deleted Successfully",
+    });
+  }
 
   return (
     <div className="mt-14">
@@ -50,37 +57,41 @@ const MessageBoard = () => {
                 style={{ fontFamily: "'Fredoka One', cursive" }}
                 className="text-gray-400 text-md"
               >
-                Sorry🙁...
+                Aw, snap! 🙁
               </div>
               <div
                 style={{ fontFamily: "'Fredoka One', cursive" }}
                 className="text-gray-400 text-md"
               >
-                You didn't receive any messages yet
+                No messages yet? No worries! 
               </div>
               <div
                 className="mt-12 text-center text-pink-500"
                 style={{ fontFamily: "'Fredoka One', cursive" }}
               >
-                Hey cheer up😃...Share your link to your friends and fill your
-                board with funny messages & feedbacks😉
+                Share your link with friends and let the funny messages and feedbacks flood in! 😃 Keep that board laughing! 
               </div>
             </div>
           </div>
         )}
-        <div className="m-2">
-          {msgList &&
-            msgList.map((msg, id) => {
-              const currentMsgCardStyle = generateRandomStyle();
-              return (
-                <MsgCard
-                  key={id}
-                  message={msg}
-                  currentMsgCardStyle={currentMsgCardStyle}
-                />
-              );
-            })}
-        </div>
+        {msgList && (
+          <div className="m-2">
+            {
+              msgList.length >= 1 && <Button className="text-white bg-red-500 ml-4 shadow-md shadow-gray-600 mt-3 mb-5" onClick={handleDelete}>Delete Messages</Button>
+            }
+            {msgList &&
+              msgList.map((msg, id) => {
+                const currentMsgCardStyle = generateRandomStyle();
+                return (
+                  <MsgCard
+                    key={id}
+                    message={{ ...msg, id }}
+                    currentMsgCardStyle={currentMsgCardStyle}
+                  />
+                );
+              })}
+          </div>
+        )}
       </Spin>
     </div>
   );

@@ -1,52 +1,52 @@
 export const msgCardStyles = [
     {
         id: 1,
-        bgColor: "#ff6666", //red
-        textColor: "#000000"
+        bgColor: "#ff9999", // Red
+        textColor: "#404040"
     },
     {
         id: 2,
-        bgColor: "#ff8000",
-        textColor: "#000000"
+        bgColor: "#ffbf80", // Orange
+        textColor: "#404040"
     },
     {
         id: 3,
         bgColor: "#ffff00",
-        textColor: "#000000"
+        textColor: "#404040"
     },
     {
         id: 4,
-        bgColor: "#99ff33",
-        textColor: "#000000"
+        bgColor: "#99ff33", // Green
+        textColor: "#404040"
     },
     {
         id: 5,
-        bgColor: "#4da6ff",
-        textColor: "#000000"
+        bgColor: "#80bfff", // Blue
+        textColor: "#404040"
     },
     {
         id: 6,
         bgColor: "#00ffff",
-        textColor: "#000000"
+        textColor: "#404040"
     },
     {
         id: 7,
-        bgColor: "#ff66ff",
-        textColor: "#000000"
+        bgColor: "#ffb3ff", // Pink
+        textColor: "#404040"
     },
     {
         id: 8,
         bgColor: "#ff80bf",
-        textColor: "#000000"
+        textColor: "#404040"
     },
     {
         id: 9,
-        bgColor: "#ff66b3",
-        textColor: "#000000"
+        bgColor: "#df9f9f",
+        textColor: "#404040"
     },
     {
         id: 10,
         bgColor: "#85e085",
-        textColor: "#000000"
+        textColor: "#404040"
     }
 ]

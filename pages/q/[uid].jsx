@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
-import GenerateIcon from '../../components/GenerateIcon'
+import GenerateIcon from '../../components/GenerateIcon';
+import { Image, Button } from "antd";
 
 const AnsPage = () => {
   const router = useRouter();
@@ -57,14 +58,19 @@ const AnsPage = () => {
 
   return (
     <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
-      <div className="flex flex-col justify-center items-center pt-4"></div>
-      <div className="bg-white flex flex-col justify-center items-center mx-3 border-4 shadow-inner border-blue-700 rounded-xl py-5">
-        <div className="flex justify-center items-center mb-3 p-2 rounded-md shadow-md shadow-gray-400">
-          <GenerateIcon icon={"message-logo-2"} size={"50px"} />
+      <div className="flex flex-col justify-center items-center pt-20"></div>
+      <div className="bg-white flex flex-col justify-center items-center mx-3 rounded-xl py-5 shadow-md shadow-black">
+        <div className="flex justify-center items-center mb-3 p-2">
+        <Image
+            src="https://i.ibb.co/YXw2y4T/2933124.jpg"
+            width={130}
+            alt="Secret message link 2023"
+            preview={false}
+          />
         </div>
         <div
-          style={{ fontFamily: "'DM Sans', sans-serif" }}
-          className="font-bold text-lg mx-2 bg-blue-600 text-white p-2 rounded-md text-center"
+          style={{ fontFamily: "'Varela Round', sans-serif" }}
+          className="font-bold text-md mx-2 text-cyan-500 p-2 rounded-md text-center border-1 border-cyan-500 shadow-sm shadow-gray-500"
         >
           Send secret message to {username}
         </div>
@@ -81,18 +87,18 @@ const AnsPage = () => {
             rows="4"
             placeholder="Enter message..."
             style={{ fontFamily: "'DM Sans', sans-serif" }}
-            className="w-56 border-2 border-blue-600 rounded-md p-2 focus:border-green-500 focus:outline-none"
+            className="w-64 border-1 border-cyan-500 rounded-md p-2 focus:border-green-500 focus:outline-none"
             onChange={(e) => setMsgInput(e.target.value)}
           />
         </div>
-        <button
+        <Button
           style={{ fontFamily: "'Roboto', sans-serif" }}
           type="submit"
-          className="shadow-md text-white bg-blue-700 px-4 py-2 rounded-xl hover:bg-green-500 w-24 mt-2"
+          className="shadow-md text-white bg-gradient-to-r from-cyan-500 to-blue-500 h-10 px-4 py-2 rounded-xl hover:bg-green-500 w-28 mt-2 shadow-md shadow-slate-400"
           onClick={sendMsg}
         >
           Send
-        </button>
+        </Button>
       </div>
     </div>
   );

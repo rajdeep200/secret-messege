@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { msgCardStyles } from "../constants/msgCardStyles";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export const makeUserId = (username) => {
@@ -44,5 +44,13 @@ export const getUserMessages = async (uid) => {
         msgList: null
       }
     }
+}
+
+export const deleteMessages = async uid => {
+  const docRef = doc(db, "users", uid);
+  const docSnap = await getDoc(docRef);
+  const response = await updateDoc(docRef, {
+    answers: []
+  });
 }
 
