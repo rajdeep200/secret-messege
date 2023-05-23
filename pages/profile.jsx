@@ -37,7 +37,7 @@ const Profile = () => {
     if(userInfo){
       setLoading(false);
     }
-  }, [router, userId, userInfo]);
+  }, []);
 
   const handleAccordion = () => {
     setExpanded(!expanded);
