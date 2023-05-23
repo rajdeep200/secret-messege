@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getDoc, doc } from "firebase/firestore";
-import { db } from "../../firebaseConfig";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import MsgCard from "../../components/MsgCard";
 import { generateRandomStyle } from "../../utils/functions";
-import { useSelector, useDispatch } from "react-redux";
 import { Spin, message, Button } from "antd";
 import { getUserMessages, deleteMessages } from "../../utils/functions";
-import { setMessages, deleteAllMessages } from "../../redux/reducers/messageSlice";
 
 const MessageBoard = () => {
-  const dispatch = useDispatch();
   const [messageApi, contextHolder] = message.useMessage();
   const router = useRouter();
-  const {isLoggedIn, userInfo} = useSelector((state) => state.user)
-  const { messageList } = useSelector((state) => state.message)
   const [msgList, setMsgList] = useState([]);
   const [loading, setLoading] = useState(true);
   const { uid } = router.query;
@@ -28,8 +21,13 @@ const MessageBoard = () => {
         const messages = await getUserMessages(uid);
         console.log('messages', messages)
         if (messages?.msgList) {
-          // dispatch(setMessages(messages.msgList));
           setMsgList(messages.msgList)
+          setLoading(false);
+        }else {
+          messageApi.open({
+            type: "error",
+            content: "Something went wrong",
+          });
           setLoading(false);
         }
       }

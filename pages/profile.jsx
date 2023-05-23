@@ -21,7 +21,7 @@ const Profile = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [expanded, setExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [userId, setUserId] = useState("");
+  // const [userId, setUserId] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const [linkValue, setLinkValue] = useState("");
   const [linkCopied, setLinkCopied] = useState(false);
@@ -30,7 +30,8 @@ const Profile = () => {
     if (!localStorage.getItem("userId")) {
       router.push("/");
     }
-    setUserId(localStorage.getItem("userId"));
+    // setUserId(localStorage.getItem("userId"));
+    const userId = localStorage.getItem("userId");
     const userObj = JSON.parse(localStorage.getItem("userInfo"))
     setUserInfo(userObj);
     setLinkValue(`${window.location.origin}/q/${userId}`);
