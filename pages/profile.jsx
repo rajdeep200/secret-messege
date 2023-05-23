@@ -2,11 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getDoc, doc } from "firebase/firestore";
-import { db } from "../firebaseConfig";
 import {
-  FaAngleDown,
-  FaAngleUp,
   FaWhatsapp,
   FaTwitterSquare,
   FaFacebookSquare,
@@ -15,19 +11,18 @@ import {
   FaTumblr,
   FaEnvelope
 } from "react-icons/fa";
-import Loader from "../components/Loader";
 import { FaRegCopy } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Button, Image, Input, Space, Spin, message } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const [messageApi, contextHolder] = message.useMessage();
-  const {isLoggedIn, userInfo} = useSelector((state) => state.user)
   const [expanded, setExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState("");
-  // const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState({});
   const [linkValue, setLinkValue] = useState("");
   const [linkCopied, setLinkCopied] = useState(false);
   const router = useRouter();
@@ -36,12 +31,13 @@ const Profile = () => {
       router.push("/");
     }
     setUserId(localStorage.getItem("userId"));
-    // getUserInfo();
+    const userObj = JSON.parse(localStorage.getItem("userInfo"))
+    setUserInfo(userObj);
     setLinkValue(`${window.location.origin}/q/${userId}`);
     if(userInfo){
       setLoading(false);
     }
-  }, [router, userId]);
+  }, [router, userId, userInfo]);
 
   const handleAccordion = () => {
     setExpanded(!expanded);

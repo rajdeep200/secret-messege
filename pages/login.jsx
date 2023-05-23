@@ -3,18 +3,19 @@ import { Input, Button, Image } from "antd";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { useRouter } from "next/router";
+import {  Spin, message } from "antd";
 
 const Login = () => {
   // Test userId ==>> Raj040756
   // Test password ==>> 0wx34i8m
+  const [messageApi, contextHolder] = message.useMessage();
   const [userId, setUserId] = useState("");
-  const [userDocId, setUserDocId] = useState("");
   const [password, setPassword] = useState("");
-  const [userInfo, setUserInfo] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const router = useRouter();
   const handleLogin = async () => {
+    setLoading(true);
     try {
       let gg = userId;
       const docRef = collection(db, "users");
@@ -24,12 +25,13 @@ const Login = () => {
       querySnapshot.forEach((doc) => {
         console.log(doc.id, " => ", doc.data());
         localStorage.setItem("userId", doc.id);
-        setUserInfo(doc.data());
         userObj = doc.data();
       });
-      console.log("userInfo 28 ===>> ", userObj);
       if (userObj.userId === userId && userObj.password === password) {
-        console.log("userInfo 30 ===>>> ", userInfo);
+        messageApi.open({
+          type: "success",
+          content: "Login Successfull",
+        });
         localStorage.setItem("userInfo", JSON.stringify(userObj));
         setLoading(false);
         setUserId("");
@@ -47,6 +49,8 @@ const Login = () => {
   }, 3000);
   return (
     <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex justify-center items-center">
+      {contextHolder}
+      <Spin spinning={loading} size="large">
       <div className="flex flex-col justify-center items-center pt-4 mx-3">
         <div className="bg-white flex flex-col justify-center items-center w-full mx-2 shadow-inner rounded-xl py-5 shadow-lg shadow-black">
           <div
@@ -95,6 +99,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      </Spin>
     </div>
   );
 };
