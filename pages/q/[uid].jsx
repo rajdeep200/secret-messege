@@ -3,14 +3,17 @@ import { useRouter } from "next/router";
 import { getDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import GenerateIcon from '../../components/GenerateIcon';
-import { Image, Button } from "antd";
+import { Image, Button, message, Spin } from "antd";
 
 const AnsPage = () => {
+  const [messageApi, contextHolder] = message.useMessage();
   const router = useRouter();
   const { uid } = router.query;
   const [username, setUsername] = useState("");
   const [msgInput, setMsgInput] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getUserInfo = async () => {
     try {
       const docRef = doc(db, "users", uid);
@@ -27,9 +30,9 @@ const AnsPage = () => {
   };
 
   const sendMsg = async () => {
+    setLoading(true);
     try {
       if(msgInput.length != 0){
-        console.log("msgInput ==>> ", msgInput);
         const ts = `${new Date().getHours()}:${new Date().getMinutes()} ${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`
         let msgObj = {
           msg: msgInput,
@@ -39,9 +42,19 @@ const AnsPage = () => {
         await updateDoc(docRef, {
           answers: arrayUnion(msgObj),
         });
+        messageApi.open({
+          type: "success",
+          content: "Message sent successfully✅",
+        });
         router.push("/redirect");
+      }else {
+        messageApi.open({
+          type: "error",
+          content: "Please type a message first",
+        });
       }
     } catch (error) {
+      console.log('error', error)
       setError(true);
     }
   };
@@ -51,13 +64,20 @@ const AnsPage = () => {
   }, 3000);
 
   useEffect(() => {
-    if (uid) {
-      getUserInfo();
+    if(localStorage.getItem('userId')){
+      router.push("/profile")
+    } else {
+      if (uid) {
+        getUserInfo();
+        setLoading(false);
+      }
     }
-  }, [uid]);
+  }, [getUserInfo, router, uid]);
 
   return (
     <div className="h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
+      {contextHolder}
+      <Spin spinning={loading} size="large">
       <div className="flex flex-col justify-center items-center pt-20"></div>
       <div className="bg-white flex flex-col justify-center items-center mx-3 rounded-xl py-5 shadow-md shadow-black">
         <div className="flex justify-center items-center mb-3 p-2">
@@ -70,7 +90,7 @@ const AnsPage = () => {
         </div>
         <div
           style={{ fontFamily: "'Varela Round', sans-serif" }}
-          className="font-bold text-md mx-2 text-cyan-500 p-2 rounded-md text-center border-1 border-cyan-500 shadow-sm shadow-gray-500"
+          className="w-64 font-bold text-md mx-2 text-cyan-500 p-2 rounded-md text-center border-1 border-cyan-500 shadow-sm shadow-gray-500"
         >
           Send secret message to {username}
         </div>
@@ -100,6 +120,7 @@ const AnsPage = () => {
           Send
         </Button>
       </div>
+      </Spin>
     </div>
   );
 };

@@ -25,6 +25,8 @@ export default function Document() {
         <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@600&display=swap" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Marhey:wght@700&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet"/>
       </Head>
       <body>
         <Main />
